@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-gold-50: #fdfbed;
+  --color-gold-100: #fbf5cf;
+  --color-gold-200: #f6e99d;
+  --color-gold-300: #eed561;
+  --color-gold-400: #e4bc32;
+  --color-gold-500: #c5a028;
+  --color-gold-600: #a87e1f;
+  --color-gold-700: #855d1c;
+  --color-gold-800: #704c1e;
+  --color-gold-900: #60411f;
+  --color-gold-950: #37210e;
+
+  --color-royal-black: #050505;
+  --color-royal-dark: #0A0A0B;
+}
+
+@layer base {
+  body {
+    @apply bg-royal-black text-slate-200 font-sans antialiased;
+  }
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, var(--color-gold-400) 0%, var(--color-gold-600) 100%);
+}
+
+.gold-text-gradient {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, var(--color-gold-300) 0%, var(--color-gold-500) 100%);
+}
+
+.glass-panel {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10;
+}
+

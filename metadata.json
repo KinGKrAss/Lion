@@ -1,0 +1,6 @@
+{
+  "name": "LingoLion",
+  "description": "A premium real-time conversational AI language partner to help you practice and master new languages through natural roleplay.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["AI Conversational Partner", "Speech-to-Text", "Text-to-Speech", "Real-time Feedback"]
+}

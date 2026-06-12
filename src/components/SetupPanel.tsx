@@ -1,119 +1,126 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Language, Scenario } from '../types';
-import { Globe, BookOpen, Coffee, Hotel, Briefcase, MessageSquare, Check, Sparkles } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 interface SetupPanelProps {
   languages: Language[];
   scenarios: Scenario[];
-  onComplete: (lang: Language, scene: Scenario) => void;
-  key?: string;
+  onComplete: (language: Language, scenario: Scenario) => void;
 }
 
-const ICON_MAP: Record<string, any> = {
-  Coffee,
-  Hotel,
-  Briefcase,
-  MessageSquare
-};
-
 export default function SetupPanel({ languages, scenarios, onComplete }: SetupPanelProps) {
-  const [selectedLang, setSelectedLang] = useState<Language>(languages[0]);
-  const [selectedScene, setSelectedScene] = useState<Scenario>(scenarios[0]);
+  const [selectedLanguage, setSelectedLanguage] = useState<Language>(languages[0]);
+  const [selectedScenario, setSelectedScenario] = useState<Scenario>(scenarios[0]);
+  const [step, setStep] = useState<'language' | 'scenario'>('language');
+
+  const handleLanguageSelect = (lang: Language) => {
+    setSelectedLanguage(lang);
+    setStep('scenario');
+  };
+
+  const handleScenarioSelect = (scenario: Scenario) => {
+    setSelectedScenario(scenario);
+    onComplete(selectedLanguage, scenario);
+  };
 
   return (
-    <div className="flex-1 w-full max-w-6xl mx-auto px-6 py-10 flex flex-col items-center">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-serif font-bold text-white mb-2 underline decoration-gold-500/30 underline-offset-8">Configure Your Experience</h2>
-        <p className="text-slate-400 font-light">Select your target language and desired roleplay environment.</p>
-      </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="flex-1 overflow-auto flex flex-col justify-center px-6 py-20"
+    >
+      <div className="max-w-2xl mx-auto w-full">
+        {step === 'language' ? (
+          <motion.div
+            key="language"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+          >
+            <h2 className="text-4xl font-serif font-bold mb-2">Choose Your Language</h2>
+            <p className="text-slate-400 mb-8">Select the language you want to learn</p>
 
-      <div className="grid md:grid-cols-2 gap-12 w-full">
-        {/* Languages */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-2 mb-4">
-            <Globe className="w-5 h-5 text-gold-500" />
-            <h3 className="uppercase tracking-[0.2em] text-xs font-bold text-gold-500/80">Target Language</h3>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {languages.map((lang) => (
-              <button
-                key={lang.id}
-                onClick={() => setSelectedLang(lang)}
-                className={`relative flex items-center gap-3 p-4 rounded-2xl border transition-all duration-300 group ${
-                  selectedLang.id === lang.id 
-                    ? 'bg-gold-500/10 border-gold-500/50 ring-1 ring-gold-500/50' 
-                    : 'bg-white/5 border-white/5 hover:border-white/20'
-                }`}
-              >
-                <span className="text-2xl">{lang.flag}</span>
-                <div className="text-left">
-                  <p className="font-bold text-white group-hover:text-gold-400 transition-colors">{lang.name}</p>
-                  <p className="text-[10px] text-slate-500 uppercase tracking-wider">{lang.nativeName}</p>
-                </div>
-                {selectedLang.id === lang.id && (
-                  <motion.div layoutId="lang-check" className="absolute right-4 top-1/2 -translate-y-1/2">
-                    <Check className="w-5 h-5 text-gold-500" />
-                  </motion.div>
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Scenarios */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-2 mb-4">
-            <BookOpen className="w-5 h-5 text-gold-500" />
-            <h3 className="uppercase tracking-[0.2em] text-xs font-bold text-gold-500/80">Conversation Scenario</h3>
-          </div>
-          <div className="space-y-3">
-            {scenarios.map((scene) => {
-              const Icon = ICON_MAP[scene.icon] || MessageSquare;
-              return (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+              {languages.map((lang) => (
                 <button
-                  key={scene.id}
-                  onClick={() => setSelectedScene(scene)}
-                  className={`w-full relative flex items-center gap-4 p-5 rounded-2xl border transition-all duration-300 group ${
-                    selectedScene.id === scene.id 
-                      ? 'bg-gold-500/10 border-gold-500/50 ring-1 ring-gold-500/50' 
-                      : 'bg-white/5 border-white/5 hover:border-white/20'
+                  key={lang.id}
+                  onClick={() => handleLanguageSelect(lang)}
+                  className={`p-4 rounded-xl border-2 transition-all duration-300 flex flex-col items-center gap-2 ${
+                    selectedLanguage.id === lang.id
+                      ? 'border-gold-400 bg-gold-400/10 text-gold-400'
+                      : 'border-white/10 bg-white/5 text-slate-300 hover:border-white/20 hover:bg-white/10'
                   }`}
                 >
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${
-                    selectedScene.id === scene.id ? 'bg-gold-500 text-white' : 'bg-white/5 text-slate-400 group-hover:text-gold-400'
-                  }`}>
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <div className="text-left">
-                    <p className="font-bold text-white text-lg">{scene.title}</p>
-                    <p className="text-xs text-slate-500 font-light line-clamp-1">{scene.description}</p>
-                  </div>
-                  {selectedScene.id === scene.id && (
-                    <motion.div layoutId="scene-check" className="absolute right-4 top-1/2 -translate-y-1/2">
-                      <Check className="w-5 h-5 text-gold-500" />
-                    </motion.div>
-                  )}
+                  <span className="text-3xl">{lang.flag}</span>
+                  <span className="text-sm font-semibold">{lang.nativeName}</span>
                 </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+              ))}
+            </div>
 
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="mt-16 w-full max-w-md"
-      >
-        <button
-          onClick={() => onComplete(selectedLang, selectedScene)}
-          className="w-full flex items-center justify-center gap-2 py-5 rounded-full gold-gradient text-white font-bold text-xl shadow-2xl shadow-gold-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all group"
-        >
-          <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform" />
-          Commence Mastery
-        </button>
-      </motion.div>
-    </div>
+            <button
+              onClick={() => setStep('scenario')}
+              className="w-full px-6 py-3 rounded-full gold-gradient text-black font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-gold-500/50 transition-all"
+            >
+              Continue <ChevronRight className="w-4 h-4" />
+            </button>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="scenario"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+          >
+            <button
+              onClick={() => setStep('language')}
+              className="text-slate-400 hover:text-slate-300 text-sm mb-4 flex items-center gap-1"
+            >
+              ← Back
+            </button>
+
+            <h2 className="text-4xl font-serif font-bold mb-2">Choose Your Scenario</h2>
+            <p className="text-slate-400 mb-8">
+              Learning {selectedLanguage.nativeName} - Select a practice scenario
+            </p>
+
+            <div className="space-y-3 mb-8">
+              {scenarios.map((scenario) => (
+                <button
+                  key={scenario.id}
+                  onClick={() => handleScenarioSelect(scenario)}
+                  className={`w-full p-4 rounded-xl border-2 text-left transition-all duration-300 ${
+                    selectedScenario.id === scenario.id
+                      ? 'border-gold-400 bg-gold-400/10'
+                      : 'border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10'
+                  }`}
+                >
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h3 className="font-bold text-lg mb-1">{scenario.title}</h3>
+                      <p className="text-sm text-slate-400">{scenario.description}</p>
+                    </div>
+                    <span className="text-2xl ml-4">{scenario.icon}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            <button
+              onClick={() => handleScenarioSelect(selectedScenario)}
+              className="w-full px-6 py-3 rounded-full gold-gradient text-black font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-gold-500/50 transition-all"
+            >
+              Start Learning <ChevronRight className="w-4 h-4" />
+            </button>
+          </motion.div>
+        )}
+      </div>
+    </motion.div>
   );
 }

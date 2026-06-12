@@ -1,92 +1,163 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 import React from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, Globe2, ShieldCheck, Zap } from 'lucide-react';
+import { Crown, Zap, Globe, Users, BookOpen, Target } from 'lucide-react';
 
 interface LandingPageProps {
   onStart: () => void;
-  key?: string;
 }
 
 export default function LandingPage({ onStart }: LandingPageProps) {
   return (
-    <div className="flex-1 flex flex-col items-center justify-center px-6 -mt-20">
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-        className="w-48 h-48 md:w-64 md:h-64 mb-10 relative"
-      >
-        <div className="absolute inset-0 gold-gradient blur-[60px] opacity-20 animate-pulse" />
-        <img 
-          src="/src/assets/images/lingo_lion_mascot_1777489292409.png" 
-          alt="Lingo Lion Mascot" 
-          className="w-full h-full object-contain relative z-10 drop-shadow-2xl"
-          referrerPolicy="no-referrer"
-        />
-      </motion.div>
-
-      <div className="text-center max-w-2xl mx-auto space-y-6">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="flex-1 overflow-auto"
+    >
+      {/* Hero Section */}
+      <section className="min-h-screen flex flex-col justify-center px-6 py-20 max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="mb-8"
         >
-          <span className="inline-block px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-[10px] font-bold uppercase tracking-[0.2em] mb-4">
-            The Pinnacle of AI Learning
-          </span>
-          <h2 className="text-5xl md:text-7xl font-serif font-bold text-white tracking-tight leading-[0.9]">
-            Speak with <span className="gold-text-gradient italic">Authority.</span>
-          </h2>
+          <div className="flex items-center gap-3 mb-6">
+            <Crown className="w-8 h-8 text-gold-400" />
+            <span className="text-sm uppercase tracking-widest font-semibold text-gold-400">Language Mastery</span>
+          </div>
+          <h1 className="text-6xl md:text-7xl font-serif font-bold leading-tight mb-6">
+            Master Any Language with
+            <span className="gold-text-gradient block mt-2">Royal Precision</span>
+          </h1>
+          <p className="text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">
+            LingoLion combines AI-powered language learning with immersive scenarios. Learn Spanish, French, German, and more through real-world conversations with advanced AI tutors.
+          </p>
         </motion.div>
 
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="text-slate-400 text-lg md:text-xl font-light leading-relaxed px-4"
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="flex flex-wrap gap-4 mb-16"
         >
-          Master any language through immersion with Leo, your elite conversational partner.
-          Experience a royal standard of real-time practice.
-        </motion.p>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
-        >
-          <button 
+          <button
             onClick={onStart}
-            className="group relative px-8 py-4 rounded-full gold-gradient text-white font-bold text-lg shadow-xl shadow-gold-500/30 hover:scale-105 transition-transform overflow-hidden"
+            className="px-8 py-4 rounded-full gold-gradient text-black font-bold text-lg hover:shadow-lg hover:shadow-gold-500/50 transition-all duration-300 transform hover:scale-105"
           >
-            <div className="flex items-center gap-2 relative z-10">
-              Begin Your Journey <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </div>
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+            Start Learning →
+          </button>
+          <button className="px-8 py-4 rounded-full border border-white/20 text-white font-bold text-lg hover:bg-white/5 transition-colors">
+            Learn More
           </button>
         </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-16 max-w-3xl mx-auto opacity-50"
+        {/* Stats */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="grid grid-cols-3 gap-4 mb-20"
         >
-          <Feature icon={<Globe2 className="w-5 h-5" />} label="7+ Languages" />
-          <Feature icon={<Zap className="w-5 h-5" />} label="Real-time AI" />
-          <Feature icon={<ShieldCheck className="w-5 h-5" />} label="Private & Secure" />
-          <Feature icon={<Globe2 className="w-5 h-5" />} label="Global Standards" />
+          <div className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm">
+            <p className="text-2xl font-bold text-gold-400">7+</p>
+            <p className="text-sm text-slate-300">Languages</p>
+          </div>
+          <div className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm">
+            <p className="text-2xl font-bold text-gold-400">4+</p>
+            <p className="text-sm text-slate-300">Scenarios</p>
+          </div>
+          <div className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm">
+            <p className="text-2xl font-bold text-gold-400">AI</p>
+            <p className="text-sm text-slate-300">Powered</p>
+          </div>
         </motion.div>
-      </div>
-    </div>
-  );
-}
+      </section>
 
-function Feature({ icon, label }: { icon: React.ReactNode, label: string }) {
-  return (
-    <div className="flex flex-col items-center gap-2">
-      <div className="text-gold-400">{icon}</div>
-      <span className="text-[10px] uppercase tracking-widest font-semibold">{label}</span>
-    </div>
+      {/* Features Section */}
+      <section className="py-20 px-6 max-w-6xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="text-4xl font-serif font-bold mb-12 text-center"
+        >
+          Why Choose LingoLion?
+        </motion.h2>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              icon: <Zap className="w-6 h-6" />,
+              title: 'AI-Powered',
+              desc: 'Advanced language AI that adapts to your level and learning style.',
+            },
+            {
+              icon: <Globe className="w-6 h-6" />,
+              title: 'Real Scenarios',
+              desc: 'Learn through immersive, real-world conversation scenarios.',
+            },
+            {
+              icon: <Users className="w-6 h-6" />,
+              title: 'Expert Feedback',
+              desc: 'Get instant corrections and explanations from your AI tutor.',
+            },
+            {
+              icon: <BookOpen className="w-6 h-6" />,
+              title: 'Structured Learning',
+              desc: 'Follow a guided path from beginner to advanced proficiency.',
+            },
+            {
+              icon: <Target className="w-6 h-6" />,
+              title: 'Goal Tracking',
+              desc: 'Monitor your progress and celebrate your milestones.',
+            },
+            {
+              icon: <Crown className="w-6 h-6" />,
+              title: 'Premium Quality',
+              desc: 'Experience the royal treatment in language learning.',
+            },
+          ].map((feature, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1 }}
+              className="p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors"
+            >
+              <div className="text-gold-400 mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+              <p className="text-slate-300">{feature.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="max-w-2xl mx-auto"
+        >
+          <h2 className="text-4xl font-serif font-bold mb-6">
+            Ready to Master a Language?
+          </h2>
+          <p className="text-lg text-slate-300 mb-8">
+            Choose your language, pick a scenario, and start conversing with our AI tutor today.
+          </p>
+          <button
+            onClick={onStart}
+            className="px-8 py-4 rounded-full gold-gradient text-black font-bold text-lg hover:shadow-lg hover:shadow-gold-500/50 transition-all duration-300 transform hover:scale-105"
+          >
+            Begin Your Journey →
+          </button>
+        </motion.div>
+      </section>
+    </motion.div>
   );
 }

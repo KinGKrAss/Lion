@@ -1,43 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
-@import "tailwindcss";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  
-  --color-gold-50: #fdfbed;
-  --color-gold-100: #fbf5cf;
-  --color-gold-200: #f6e99d;
-  --color-gold-300: #eed561;
-  --color-gold-400: #e4bc32;
-  --color-gold-500: #c5a028;
-  --color-gold-600: #a87e1f;
-  --color-gold-700: #855d1c;
-  --color-gold-800: #704c1e;
-  --color-gold-900: #60411f;
-  --color-gold-950: #37210e;
-
-  --color-royal-black: #050505;
-  --color-royal-dark: #0A0A0B;
+:root {
+  --gold-gradient: linear-gradient(135deg, #f0b649, #d67d24);
 }
 
-@layer base {
-  body {
-    @apply bg-royal-black text-slate-200 font-sans antialiased;
+@layer components {
+  .gold-gradient {
+    @apply bg-gradient-to-r from-gold-400 to-gold-600;
+  }
+
+  .gold-text-gradient {
+    @apply bg-gradient-to-r from-gold-300 to-gold-500 bg-clip-text text-transparent;
+  }
+
+  .glass-effect {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
   }
 }
 
-.gold-gradient {
-  background: linear-gradient(135deg, var(--color-gold-400) 0%, var(--color-gold-600) 100%);
+body {
+  @apply bg-royal-black text-slate-100 font-sans;
 }
 
-.gold-text-gradient {
-  @apply bg-clip-text text-transparent;
-  background-image: linear-gradient(135deg, var(--color-gold-300) 0%, var(--color-gold-500) 100%);
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-.glass-panel {
-  @apply bg-white/5 backdrop-blur-xl border border-white/10;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(240, 182, 73, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(240, 182, 73, 0.5);
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(240, 182, 73, 0.3);
+  color: inherit;
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  animation: shimmer 2s infinite;
+}

@@ -44,8 +44,8 @@ export default function SetupPanel({ languages, scenarios, onComplete }: SetupPa
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
           >
-            <h2 className="text-4xl font-serif font-bold mb-2">Choose Your Language</h2>
-            <p className="text-slate-400 mb-8">Select the language you want to learn</p>
+            <h2 className="text-4xl font-serif font-bold mb-2">Ausgabesprache wählen</h2>
+            <p className="text-slate-400 mb-8">Wähle die Sprache für Lion/Z1-Antworten</p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
               {languages.map((lang) => (
@@ -68,7 +68,7 @@ export default function SetupPanel({ languages, scenarios, onComplete }: SetupPa
               onClick={() => setStep('scenario')}
               className="w-full px-6 py-3 rounded-full gold-gradient text-black font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-gold-500/50 transition-all"
             >
-              Continue <ChevronRight className="w-4 h-4" />
+              Weiter <ChevronRight className="w-4 h-4" />
             </button>
           </motion.div>
         ) : (
@@ -85,9 +85,9 @@ export default function SetupPanel({ languages, scenarios, onComplete }: SetupPa
               ← Back
             </button>
 
-            <h2 className="text-4xl font-serif font-bold mb-2">Choose Your Scenario</h2>
+            <h2 className="text-4xl font-serif font-bold mb-2">Modul wählen</h2>
             <p className="text-slate-400 mb-8">
-              Learning {selectedLanguage.nativeName} - Select a practice scenario
+              Lion/Z1 antwortet auf {selectedLanguage.nativeName} - Wähle ein Arbeitsmodul
             </p>
 
             <div className="space-y-3 mb-8">
@@ -116,7 +116,7 @@ export default function SetupPanel({ languages, scenarios, onComplete }: SetupPa
               onClick={() => handleScenarioSelect(selectedScenario)}
               className="w-full px-6 py-3 rounded-full gold-gradient text-black font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-gold-500/50 transition-all"
             >
-              Start Learning <ChevronRight className="w-4 h-4" />
+              Modul starten <ChevronRight className="w-4 h-4" />
             </button>
           </motion.div>
         )}

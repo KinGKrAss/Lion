@@ -12,7 +12,7 @@
     "server:dev": "tsx watch server.ts",
     "build": "vite build",
     "build:full": "npm run build && npm run server:build",
-    "server:build": "tsc server.ts --outDir dist --module esnext --target es2020 --moduleResolution node --esModuleInterop",
+    "server:build": "tsc server.ts --outDir dist --module esnext --target es2020 --moduleResolution node --esModuleInterop --skipLibCheck",
     "preview": "vite preview",
     "start": "node dist/server.js",
     "start:dev": "tsx server.ts",

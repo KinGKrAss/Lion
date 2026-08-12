@@ -1,6 +1,22 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'tailwindcss';
+@theme {
+  --color-gold-50: #fef9f0;
+  --color-gold-100: #fdf2de;
+  --color-gold-200: #fae4bd;
+  --color-gold-300: #f5cd7a;
+  --color-gold-400: #f0b649;
+  --color-gold-500: #e89b2d;
+  --color-gold-600: #d67d24;
+  --color-gold-700: #b35c1f;
+  --color-gold-800: #8f4820;
+  --color-gold-900: #743c1f;
+  --color-royal-black: #050505;
+  --color-royal-dark: #0d0d0f;
+  --color-royal-dark-2: #151515;
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans: system-ui, -apple-system, sans-serif;
+}
+
 
 :root {
   --gold-gradient: linear-gradient(135deg, #f0b649, #d67d24);

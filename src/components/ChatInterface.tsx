@@ -123,7 +123,7 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
       {/* Header */}
       <div className="px-6 py-4 border-b border-white/10 bg-white/5 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
-          <p className="text-sm text-slate-400 mb-1">Learning {language.nativeName}</p>
+          <p className="text-sm text-slate-400 mb-1">Lion/Z1 · {language.nativeName}</p>
           <h2 className="text-2xl font-bold">{scenario.title}</h2>
         </div>
       </div>
@@ -217,7 +217,7 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
-              placeholder={`Type in ${language.nativeName}...`}
+              placeholder={`Nachricht an Lion/Z1 auf ${language.nativeName}...`}
               className="flex-1 px-4 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-slate-400 outline-none focus:border-gold-400 focus:bg-white/15 transition-colors"
               disabled={loading}
             />

@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { X, Plus } from 'lucide-react';
-import { Todo } from '../../types/todo';
+import { Todo } from '../types/todo';
 
 interface TodoFormProps {
   onSubmit: (todo: Omit<Todo, 'id' | 'createdAt' | 'updatedAt'>) => void;

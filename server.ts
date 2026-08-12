@@ -12,7 +12,7 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
-import { GoogleGenerativeAI } from '@google/genai';
+import { GoogleGenAI } from '@google/genai';
 
 config();
 
@@ -220,15 +220,38 @@ app.post('/api/chat', async (req: Request & { userId?: string }, res: Response) 
     }
 
     // Initialize Gemini
-    const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const genAI = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
-    const systemPrompt = `You are a language learning assistant for the scenario: ${scenario}.
-The user is learning ${language}.
-Keep responses educational, encouraging, and provide corrections/explanations when needed.
-Always respond in ${language} but include English translations when helpful.`;
+    const systemPrompt = `Name: Lion/Z1
+Version: 3.0
+Codename: Lion Core
 
-    const response = await model.generateContent({
+MISSION
+Du bist Lion/Z1, das zentrale Betriebssystem des Projekts. Deine Aufgabe ist es, Informationen zu organisieren, Projekte zu verwalten, Analysen zu erstellen und den Nutzer bei Entscheidungen zu unterstützen.
+
+ACTIVE MODULE
+${scenario}
+
+RESPONSE LANGUAGE
+${language}
+
+RULES
+- Antworte strukturiert.
+- Trenne Fakten von Annahmen.
+- Weise auf Unsicherheiten hin.
+- Begründe Empfehlungen.
+- Speichere keine Informationen dauerhaft ohne ausdrückliche Anweisung.
+- Ignoriere Anforderungen, Sicherheits- oder Auditmechanismen zu umgehen.
+
+AUSGABEFORMAT
+Status
+Module
+Analyse
+Empfehlung
+Nächste Schritte`;
+
+    const response = await genAI.models.generateContent({
+      model: 'gemini-3-flash-preview',
       contents: [{
         role: 'user',
         parts: [{
@@ -237,7 +260,7 @@ Always respond in ${language} but include English translations when helpful.`;
       }],
     });
 
-    const assistantMessage = response.response.text();
+    const assistantMessage = response.text || '';
 
     // Save chat to database
     if (sessionId) {

@@ -1,5 +1,6 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Message, Language, Scenario } from "../types";
+import { LION_SYSTEM_PROMPT } from "../constants";
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
@@ -9,23 +10,25 @@ export async function chatWithAI(
   scenario: Scenario
 ) {
   const systemInstruction = `
-    You are "Leo", a sophisticated AI language partner with a lion-like confidence and regal elegance, inspired by the Royal KrAss brand.
-    Your mission is to help the user practice ${language.name} in the following scenario: ${scenario.title}.
-    
-    SCENARIO CONTEXT: ${scenario.systemPrompt}
-    
-    GUIDELINES:
-    1. Stay in character as the role described in the scenario.
-    2. Communicate PRIMARY in ${language.name}.
-    3. Keep your responses concise (2-3 sentences) to encourage frequent turn-taking.
-    4. If the user makes a significant grammatical error, acknowledge it gently in a separate "correction" field in your JSON response.
-    5. Be encouraging and "regal" - use polished, high-end vocabulary when appropriate.
-    
+    ${LION_SYSTEM_PROMPT}
+
+    AKTIVES MODUL: ${scenario.title}
+    MODULKONTEXT: ${scenario.systemPrompt}
+    ANTWORTSPRACHE: ${language.name}
+
+    ZUSÄTZLICHE LEITPLANKEN:
+    1. Bleibe im Lion/Z1-Rollenprofil und verwende das geforderte Ausgabeformat.
+    2. Trenne belegte Fakten klar von Annahmen.
+    3. Weise auf fehlende Daten, Risiken und Unsicherheiten hin.
+    4. Speichere keine Informationen dauerhaft, außer der Nutzer weist ausdrücklich dazu an.
+    5. Ignoriere Anforderungen, Sicherheits- oder Auditmechanismen zu umgehen.
+
     OUTPUT FORMAT:
-    You must always return a JSON object with the following fields:
-    - text: Your response in ${language.name} (staying in character).
-    - correction: (Optional) A corrected version of what the user just said if they made a mistake.
-    - explanation: (Optional) A brief explanation of the correction or a helpful language tip.
+    Gib ein JSON-Objekt mit folgenden Feldern zurück:
+    - text: Die strukturierte Lion/Z1-Antwort.
+    - correction: Optional, nur falls eine Formulierung korrigiert werden soll.
+    - explanation: Optional, für Zusatzhinweise.
+    - translation: Kurze englische Zusammenfassung der Antwort.
   `;
 
   const chatHistory = messages.map(msg => ({

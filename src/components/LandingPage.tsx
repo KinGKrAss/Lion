@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
-import { Crown, Zap, Globe, Users, BookOpen, Target } from 'lucide-react';
+import { Crown, Zap, Landmark, WalletCards, Wind, FileText, BrainCircuit } from 'lucide-react';
 
 interface LandingPageProps {
   onStart: () => void;
@@ -29,14 +29,14 @@ export default function LandingPage({ onStart }: LandingPageProps) {
         >
           <div className="flex items-center gap-3 mb-6">
             <Crown className="w-8 h-8 text-gold-400" />
-            <span className="text-sm uppercase tracking-widest font-semibold text-gold-400">Language Mastery</span>
+            <span className="text-sm uppercase tracking-widest font-semibold text-gold-400">Lion Core</span>
           </div>
           <h1 className="text-6xl md:text-7xl font-serif font-bold leading-tight mb-6">
-            Master Any Language with
+            Organize Every Project with
             <span className="gold-text-gradient block mt-2">Royal Precision</span>
           </h1>
           <p className="text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">
-            LingoLion combines AI-powered language learning with immersive scenarios. Learn Spanish, French, German, and more through real-world conversations with advanced AI tutors.
+            Lion/Z1 ist das zentrale Betriebssystem für Projektorganisation, Analyse und Entscheidungen – mit Modulen für Core, Immobilien, Finanzen, Energie, Diplomatie und ZOE AI.
           </p>
         </motion.div>
 
@@ -50,10 +50,10 @@ export default function LandingPage({ onStart }: LandingPageProps) {
             onClick={onStart}
             className="px-8 py-4 rounded-full gold-gradient text-black font-bold text-lg hover:shadow-lg hover:shadow-gold-500/50 transition-all duration-300 transform hover:scale-105"
           >
-            Start Learning →
+            Lion/Z1 starten →
           </button>
           <button className="px-8 py-4 rounded-full border border-white/20 text-white font-bold text-lg hover:bg-white/5 transition-colors">
-            Learn More
+            Module ansehen
           </button>
         </motion.div>
 
@@ -65,16 +65,16 @@ export default function LandingPage({ onStart }: LandingPageProps) {
           className="grid grid-cols-3 gap-4 mb-20"
         >
           <div className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm">
-            <p className="text-2xl font-bold text-gold-400">7+</p>
-            <p className="text-sm text-slate-300">Languages</p>
+            <p className="text-2xl font-bold text-gold-400">6</p>
+            <p className="text-sm text-slate-300">Module</p>
           </div>
           <div className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm">
-            <p className="text-2xl font-bold text-gold-400">4+</p>
-            <p className="text-sm text-slate-300">Scenarios</p>
+            <p className="text-2xl font-bold text-gold-400">Z1</p>
+            <p className="text-sm text-slate-300">Core</p>
           </div>
           <div className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm">
-            <p className="text-2xl font-bold text-gold-400">AI</p>
-            <p className="text-sm text-slate-300">Powered</p>
+            <p className="text-2xl font-bold text-gold-400">ZOE</p>
+            <p className="text-sm text-slate-300">AI</p>
           </div>
         </motion.div>
       </section>
@@ -86,40 +86,40 @@ export default function LandingPage({ onStart }: LandingPageProps) {
           whileInView={{ opacity: 1 }}
           className="text-4xl font-serif font-bold mb-12 text-center"
         >
-          Why Choose LingoLion?
+          Lion/Z1 Module
         </motion.h2>
 
         <div className="grid md:grid-cols-3 gap-8">
           {[
             {
               icon: <Zap className="w-6 h-6" />,
-              title: 'AI-Powered',
-              desc: 'Advanced language AI that adapts to your level and learning style.',
+              title: 'CORE',
+              desc: 'Benutzer, Rollen, Einstellungen, Sicherheit und Systemstatus.',
             },
             {
-              icon: <Globe className="w-6 h-6" />,
-              title: 'Real Scenarios',
-              desc: 'Learn through immersive, real-world conversation scenarios.',
+              icon: <Landmark className="w-6 h-6" />,
+              title: 'GAIA',
+              desc: 'Immobilien, Grundstücke, Mietverträge, Projekte und Karten.',
             },
             {
-              icon: <Users className="w-6 h-6" />,
-              title: 'Expert Feedback',
-              desc: 'Get instant corrections and explanations from your AI tutor.',
+              icon: <WalletCards className="w-6 h-6" />,
+              title: 'FORTUNA',
+              desc: 'Einnahmen, Ausgaben, Cashflow, Vermögensübersicht und Berichte.',
             },
             {
-              icon: <BookOpen className="w-6 h-6" />,
-              title: 'Structured Learning',
-              desc: 'Follow a guided path from beginner to advanced proficiency.',
+              icon: <Wind className="w-6 h-6" />,
+              title: 'ELECTRA',
+              desc: 'Windparks, Solaranlagen, Energieproduktion und CO₂-Auswertungen.',
             },
             {
-              icon: <Target className="w-6 h-6" />,
-              title: 'Goal Tracking',
-              desc: 'Monitor your progress and celebrate your milestones.',
+              icon: <FileText className="w-6 h-6" />,
+              title: 'DIPLOMATIE',
+              desc: 'Dokumente, Verträge, Kontakte und Termine.',
             },
             {
-              icon: <Crown className="w-6 h-6" />,
-              title: 'Premium Quality',
-              desc: 'Experience the royal treatment in language learning.',
+              icon: <BrainCircuit className="w-6 h-6" />,
+              title: 'ZOE AI',
+              desc: 'Analysen, Zusammenfassungen, Automatisierungen und strategische Vorschläge.',
             },
           ].map((feature, idx) => (
             <motion.div
@@ -145,16 +145,16 @@ export default function LandingPage({ onStart }: LandingPageProps) {
           className="max-w-2xl mx-auto"
         >
           <h2 className="text-4xl font-serif font-bold mb-6">
-            Ready to Master a Language?
+            Bereit für Lion/Z1?
           </h2>
           <p className="text-lg text-slate-300 mb-8">
-            Choose your language, pick a scenario, and start conversing with our AI tutor today.
+            Wähle ein Modul und starte mit strukturierter Analyse im verbindlichen Z1-Ausgabeformat.
           </p>
           <button
             onClick={onStart}
             className="px-8 py-4 rounded-full gold-gradient text-black font-bold text-lg hover:shadow-lg hover:shadow-gold-500/50 transition-all duration-300 transform hover:scale-105"
           >
-            Begin Your Journey →
+            System öffnen →
           </button>
         </motion.div>
       </section>

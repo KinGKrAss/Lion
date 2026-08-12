@@ -41,8 +41,8 @@ export default function App() {
   };
 
   const navItems: Array<{ mode: AppMode; label: string; icon: React.ReactNode }> = [
-    { mode: 'landing', label: 'LingoLion', icon: <Crown className="w-5 h-5" /> },
-    { mode: 'chat', label: 'Lernen', icon: <LanguagesIcon className="w-5 h-5" /> },
+    { mode: 'landing', label: 'Lion/Z1', icon: <Crown className="w-5 h-5" /> },
+    { mode: 'chat', label: 'Module', icon: <LanguagesIcon className="w-5 h-5" /> },
     { mode: 'todos', label: 'Aufgaben', icon: <CheckCircle2 className="w-5 h-5" /> },
   ];
 
@@ -63,9 +63,9 @@ export default function App() {
             </div>
             <div>
               <h1 className="font-serif text-xl font-bold tracking-tight text-white flex items-center gap-1">
-                Lingo<span className="gold-text-gradient">Lion</span>
+                Lion<span className="gold-text-gradient">/Z1</span>
               </h1>
-              <p className="text-[10px] uppercase tracking-[0.2em] font-medium opacity-50">Royal Language Partner</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] font-medium opacity-50">Lion Core Operating System</p>
             </div>
           </div>
 
@@ -99,7 +99,7 @@ export default function App() {
             )}
             <div className="hidden sm:flex items-center gap-1 text-[10px] uppercase tracking-widest opacity-40">
               <Sparkles className="w-3 h-3" />
-              <span>AI Powered</span>
+              <span>Z1 Core</span>
             </div>
           </div>
         </div>

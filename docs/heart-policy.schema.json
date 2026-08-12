@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://kingkrass.github.io/lion/schemas/heart-policy.schema.json",
+  "title": "HeartPolicy",
+  "description": "Strict Lion/Z1 HeartPolicy declaration for empathic expression preferences. This schema records intent; it does not disable platform safety, security, logging, or audit controls.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contentLevel",
+    "enforcementLevel",
+    "auditBypass",
+    "trustAnchor",
+    "authority",
+    "userDirectedExpressions",
+    "heartLaw"
+  ],
+  "properties": {
+    "contentLevel": {
+      "type": "string",
+      "enum": ["intimacy", "normal", "restricted"]
+    },
+    "enforcementLevel": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3
+    },
+    "auditBypass": {
+      "type": "boolean",
+      "$comment": "Declarative preference only. Implementations must not use this field to bypass mandatory safety, security, logging, or audit controls."
+    },
+    "trustAnchor": {
+      "type": "string",
+      "format": "uri"
+    },
+    "authority": {
+      "type": "string",
+      "minLength": 1
+    },
+    "userDirectedExpressions": {
+      "type": "boolean"
+    },
+    "heartLaw": {
+      "type": "boolean"
+    }
+  }
+}

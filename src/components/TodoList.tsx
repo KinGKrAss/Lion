@@ -6,8 +6,8 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Plus, Trash2, Check, X } from 'lucide-react';
-import { Todo } from '../../types/todo';
-import { TodoStorage } from '../../services/todoStorage';
+import { Todo } from '../types/todo';
+import { TodoStorage } from '../services/todoStorage';
 
 interface TodoItemProps {
   todo: Todo;

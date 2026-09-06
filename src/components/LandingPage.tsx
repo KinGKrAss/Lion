@@ -127,23 +127,25 @@ export default function LandingPage({ onStart }: LandingPageProps) {
           ))}
         </div>
 
-        <div className="mt-10 grid gap-4">
-          {PLATFORM_INTEGRATIONS.map((integration) => (
-            <div
-              key={integration.id}
-              className="rounded-xl border border-dashed border-white/15 bg-white/[0.03] px-5 py-4"
-            >
-              <div className="flex flex-wrap items-center gap-3 mb-2">
-                <h3 className="text-lg font-bold">{integration.title}</h3>
-                <span className="rounded-full border border-white/15 px-3 py-1 text-[11px] tracking-wider text-slate-300">
-                  {integration.status}
-                </span>
-              </div>
-              <p className="text-sm text-slate-300">{integration.summary}</p>
-              <p className="text-xs text-slate-400 mt-2">{integration.note}</p>
-            </div>
-          ))}
-        </div>
+        <section className="mt-10" aria-label="Plattform-Integrationen">
+          <ul className="grid gap-4">
+            {PLATFORM_INTEGRATIONS.map((integration) => (
+              <li
+                key={integration.id}
+                className="rounded-xl border border-dashed border-white/15 bg-white/[0.03] px-5 py-4 list-none"
+              >
+                <div className="flex flex-wrap items-center gap-3 mb-2">
+                  <h3 className="text-lg font-bold">{integration.title}</h3>
+                  <span className="rounded-full border border-white/15 px-3 py-1 text-[11px] tracking-wider text-slate-300">
+                    {integration.status}
+                  </span>
+                </div>
+                <p className="text-sm text-slate-300">{integration.summary}</p>
+                <p className="text-xs text-slate-400 mt-2">{integration.note}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
       </section>
 
       {/* CTA Section */}

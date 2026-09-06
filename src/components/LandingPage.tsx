@@ -127,7 +127,10 @@ export default function LandingPage({ onStart }: LandingPageProps) {
           ))}
         </div>
 
-        <section className="mt-10" aria-label="Plattform-Integrationen">
+        <section className="mt-10" aria-labelledby="platform-integrations-heading">
+          <h3 id="platform-integrations-heading" className="text-lg font-semibold mb-3">
+            Plattform-Integrationen
+          </h3>
           <ul className="grid gap-4">
             {PLATFORM_INTEGRATIONS.map((integration) => (
               <li

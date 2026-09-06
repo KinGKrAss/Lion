@@ -20,6 +20,20 @@ export interface Scenario {
   icon: string;
 }
 
+export interface ModuleDefinition extends Scenario {
+  status: string;
+  capabilitySummary: string;
+  guardrail: string;
+}
+
+export interface IntegrationDefinition {
+  id: string;
+  title: string;
+  status: string;
+  summary: string;
+  note: string;
+}
+
 export interface Message {
   id: string;
   role: 'user' | 'assistant';

@@ -26,6 +26,7 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
   const [sessionRetryKey, setSessionRetryKey] = useState(0);
 
   const offlineMessage = 'Keine Netzwerkverbindung. Prüfe die Verbindung und versuche es erneut.';
+  const isNavigatorOffline = () => typeof navigator !== 'undefined' && !navigator.onLine;
 
   const getResponseErrorMessage = async (response: Response, fallback: string) => {
     try {
@@ -90,7 +91,7 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
         setSessionId(data.id);
         setError(null);
       } catch (err) {
-        const errorMessage = isOffline
+        const errorMessage = isNavigatorOffline()
           ? offlineMessage
           : err instanceof Error && err.message
             ? err.message
@@ -156,7 +157,7 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
 
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (err) {
-      const errorMsg = isOffline
+      const errorMsg = isNavigatorOffline()
         ? offlineMessage
         : err instanceof Error && err.message
           ? err.message

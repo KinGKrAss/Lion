@@ -184,14 +184,14 @@ const TodoApp: React.FC = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="flex flex-wrap gap-2 mb-6"
+          className="flex flex-col sm:flex-row sm:flex-wrap gap-2 mb-6"
         >
           <button
             onClick={() => {
               setEditingTodo(null);
               setShowForm(true);
             }}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg gold-gradient text-black font-semibold hover:shadow-lg hover:shadow-gold-500/50 transition-all"
+            className="flex min-h-11 items-center justify-center gap-2 px-4 py-2 rounded-lg gold-gradient text-black font-semibold hover:shadow-lg hover:shadow-gold-500/50 transition-all"
           >
             <Plus className="w-4 h-4" />
             Neue Aufgabe
@@ -232,17 +232,17 @@ const TodoApp: React.FC = () => {
           </select>
 
           {/* Actions */}
-          <div className="ml-auto flex gap-2">
+          <div className="ml-0 sm:ml-auto flex gap-2">
             <button
               onClick={handleExport}
-              className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+              className="min-h-11 min-w-11 p-2 hover:bg-white/10 rounded-lg transition-colors"
               title="Export"
             >
               <Download className="w-5 h-5" />
             </button>
             <button
               onClick={handleImport}
-              className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+              className="min-h-11 min-w-11 p-2 hover:bg-white/10 rounded-lg transition-colors"
               title="Import"
             >
               <Upload className="w-5 h-5" />
@@ -250,7 +250,7 @@ const TodoApp: React.FC = () => {
             {stats.completed > 0 && (
               <button
                 onClick={handleClearCompleted}
-                className="p-2 hover:bg-red-500/20 rounded-lg transition-colors text-red-400"
+                className="min-h-11 min-w-11 p-2 hover:bg-red-500/20 rounded-lg transition-colors text-red-400"
                 title="Abgeschlossene löschen"
               >
                 <Trash2 className="w-5 h-5" />
@@ -260,7 +260,7 @@ const TodoApp: React.FC = () => {
         </motion.div>
 
         {/* Todo List */}
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 10 }} transition={{ delay: 0.2 }}>
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
           <TodoList
             todos={displayTodos}
             onToggle={handleToggleTodo}

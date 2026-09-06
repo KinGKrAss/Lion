@@ -46,13 +46,13 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, onCancel, initialTodo, is
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-black/50 flex items-end sm:items-center justify-center z-50 p-4"
       onClick={onCancel}
     >
       <motion.form
         onClick={e => e.stopPropagation()}
         onSubmit={handleSubmit}
-        className="bg-royal-dark rounded-2xl border border-gold-400/30 p-6 w-full max-w-md max-h-[90vh] overflow-y-auto"
+        className="bg-royal-dark rounded-2xl border border-gold-400/30 p-6 w-full max-w-md max-h-[90vh] overflow-y-auto mb-[env(safe-area-inset-bottom)]"
       >
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">{isEdit ? 'Aufgabe bearbeiten' : 'Neue Aufgabe'}</h2>
@@ -74,7 +74,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, onCancel, initialTodo, is
               value={title}
               onChange={e => setTitle(e.target.value)}
               placeholder="Aufgabentitel"
-              className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:border-gold-400 focus:bg-white/15 outline-none transition-colors"
+              className="w-full text-base px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-gold-400 focus:bg-white/15 outline-none transition-colors"
               required
             />
           </div>
@@ -87,7 +87,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, onCancel, initialTodo, is
               onChange={e => setDescription(e.target.value)}
               placeholder="Aufgabenbeschreibung (optional)"
               rows={3}
-              className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:border-gold-400 focus:bg-white/15 outline-none transition-colors resize-none"
+              className="w-full text-base px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-gold-400 focus:bg-white/15 outline-none transition-colors resize-none"
             />
           </div>
 
@@ -100,7 +100,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, onCancel, initialTodo, is
                   key={p}
                   type="button"
                   onClick={() => setPriority(p)}
-                  className={`flex-1 py-2 rounded-lg font-semibold transition-colors ${
+                  className={`flex-1 min-h-11 py-2 rounded-lg font-semibold transition-colors ${
                     priority === p
                       ? p === 'high'
                         ? 'bg-red-500 text-white'
@@ -123,7 +123,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, onCancel, initialTodo, is
               type="date"
               value={dueDate}
               onChange={e => setDueDate(e.target.value)}
-              className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:border-gold-400 focus:bg-white/15 outline-none transition-colors"
+              className="w-full text-base px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-gold-400 focus:bg-white/15 outline-none transition-colors"
             />
           </div>
 
@@ -135,7 +135,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, onCancel, initialTodo, is
               value={tags}
               onChange={e => setTags(e.target.value)}
               placeholder="arbeit, wichtig, persönlich"
-              className="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 focus:border-gold-400 focus:bg-white/15 outline-none transition-colors"
+              className="w-full text-base px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-gold-400 focus:bg-white/15 outline-none transition-colors"
             />
           </div>
         </div>
@@ -145,13 +145,13 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit, onCancel, initialTodo, is
           <button
             type="button"
             onClick={onCancel}
-            className="flex-1 px-4 py-2 rounded-lg border border-white/20 hover:bg-white/5 transition-colors font-semibold"
+            className="flex-1 min-h-11 px-4 py-2 rounded-lg border border-white/20 hover:bg-white/5 transition-colors font-semibold"
           >
             Abbrechen
           </button>
           <button
             type="submit"
-            className="flex-1 px-4 py-2 rounded-lg gold-gradient text-black font-semibold hover:shadow-lg hover:shadow-gold-500/50 transition-all"
+            className="flex-1 min-h-11 px-4 py-2 rounded-lg gold-gradient text-black font-semibold hover:shadow-lg hover:shadow-gold-500/50 transition-all"
           >
             {isEdit ? 'Speichern' : 'Erstellen'}
           </button>

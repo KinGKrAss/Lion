@@ -1,4 +1,11 @@
-# LingoLion - Android & Mobile Deployment Guide
+# Lion/Z1 - Android & Mobile Deployment Guide
+
+## ✅ Aktueller Status
+
+- Dieses Repository enthält **keine native Android-App**, kein React Native, kein Capacitor und aktuell auch **kein Web-App-Manifest / keinen Service Worker**.
+- Der heute unterstützte Android-Pfad ist deshalb: **responsive Mobile-Web-App im Browser** oder lokale Nutzung via **Termux**.
+- „Zum Startbildschirm hinzufügen“ funktioniert als Browser-Verknüpfung, **nicht** als bestätigte Offline-PWA.
+- `GEMINI_API_KEY` bleibt serverseitig in `.env.local`; keine Secrets in der Client-App hinterlegen.
 
 ## 📱 Android Installation Methods
 
@@ -22,7 +29,7 @@ pkg update && pkg upgrade -y
 # Install Node.js and Git
 pkg install nodejs git nano
 
-# Clone LingoLion
+# Clone Lion/Z1
 git clone https://github.com/KinGKrAss/Lion.git
 cd Lion
 
@@ -54,14 +61,14 @@ http://localhost:3000
 
 ---
 
-### Method 2: Progressive Web App (PWA) - Works Offline
+### Method 2: Browser Shortcut on Android
 
-**When deployed to cloud:**
+**When deployed:**
 
 1. Open app in Chrome browser
-2. Tap 3-dot menu → "Install app"
-3. App added to home screen
-4. Works offline (with cached data)
+2. Tap 3-dot menu → "Zum Startbildschirm hinzufügen"
+3. App shortcut added to home screen
+4. Network connection is still required for chat responses
 
 ---
 
@@ -77,49 +84,30 @@ docker pull node:18-alpine
 
 ## ☁️ Best Option for Deployment
 
-### **Railway.app** (Recommended)
-
-**Why?**
-- ✅ Free tier (5GB/month)
-- ✅ Auto-deploys from GitHub
-- ✅ No credit card required for free tier
-- ✅ Works on any device
-- ✅ Professional hosting
+### **Railway.app** (Possible hosting path)
 
 **Setup:**
 
-1. **Push code to GitHub** (if not already)
-   ```bash
-   git add .
-   git commit -m "Ready for deployment"
-   git push origin main
-   ```
+1. **Create Railway account** at railway.app (sign in with GitHub)
 
-2. **Create Railway account** at railway.app (sign in with GitHub)
-
-3. **Create new project**
+2. **Create new project**
    - Click "+ New Project"
    - "Deploy from GitHub repo"
    - Select "KinGKrAss/Lion"
 
-4. **Set environment variables**
+3. **Set environment variables**
    - Click project → Variables
    - Add:
      - `GEMINI_API_KEY`: your_key
      - `NODE_ENV`: production
 
-5. **Deploy automatically**
+4. **Deploy automatically**
    - Railway deploys on each GitHub push
 
-6. **Get live URL**
+5. **Get live URL**
    - Open from Railway dashboard
    - Share URL with anyone
    - Works from Android browser
-
-**Access on Android:**
-```
-https://lingolion-production.railway.app
-```
 
 ---
 
@@ -133,13 +121,13 @@ https://lingolion-production.railway.app
    ```
 
 2. **Add to Home Screen**
-   - Tap ⋮ (menu) → "Install app"
-   - App appears like native app
-   - Works online and offline
+   - Tap ⋮ (menu) → "Zum Startbildschirm hinzufügen"
+   - App appears like a browser-hosted shortcut
+   - Keep network available for live responses
 
-3. **Notifications (optional)**
-   - Allow notifications for updates
-   - Get alerts on new features
+3. **Current limitation**
+   - No offline cache
+   - No push notifications configured in this repository
 
 ---
 
@@ -216,8 +204,20 @@ ifconfig  # See your IP address
 
 ### **For Sharing & Production**
 → Use **Railway.app**
-- Professional hosting
-- Always online
+- Browser-based access
+- Keep backend environment variables on the server side
+
+---
+
+## 🛠️ Smallest sensible native integration path
+
+If you want a real Android deliverable later without rewriting the app:
+
+1. Add a Web App Manifest and production icons
+2. Add a minimal Service Worker for static asset caching
+3. Verify all API calls still route to the backend and that no secrets move into `src/`
+4. Wrap the existing Vite build in **Trusted Web Activity** or **Capacitor**
+5. Add Android-specific signing/build steps outside this repository only when that wrapper exists
 - Easy to share
 - Free tier sufficient
 

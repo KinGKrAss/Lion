@@ -51,7 +51,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onDelete, onEdit })
       <div className="flex items-start gap-3">
         <button
           onClick={() => onToggle(todo.id)}
-          className={`mt-1 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
+          className={`mt-1 min-w-11 min-h-11 rounded-full border-2 flex items-center justify-center transition-all ${
             todo.completed
               ? 'bg-green-500/20 border-green-500'
               : 'border-gold-400 hover:bg-gold-400/10'
@@ -93,14 +93,14 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onDelete, onEdit })
         <div className="flex gap-2">
           <button
             onClick={() => onEdit(todo)}
-            className="p-2 hover:bg-gold-500/20 rounded-lg transition-colors"
+            className="min-h-11 min-w-11 p-2 hover:bg-gold-500/20 rounded-lg transition-colors"
             title="Edit"
           >
             ✏️
           </button>
           <button
             onClick={() => onDelete(todo.id)}
-            className="p-2 hover:bg-red-500/20 rounded-lg transition-colors text-red-400"
+            className="min-h-11 min-w-11 p-2 hover:bg-red-500/20 rounded-lg transition-colors text-red-400"
             title="Delete"
           >
             <Trash2 className="w-4 h-4" />

@@ -34,7 +34,7 @@ export default function SetupPanel({ languages, scenarios, onComplete }: SetupPa
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="flex-1 overflow-auto flex flex-col justify-center px-6 py-20"
+      className="flex-1 overflow-auto flex flex-col justify-center px-4 sm:px-6 py-10 sm:py-20"
     >
       <div className="max-w-2xl mx-auto w-full">
         {step === 'language' ? (
@@ -44,15 +44,16 @@ export default function SetupPanel({ languages, scenarios, onComplete }: SetupPa
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
           >
-            <h2 className="text-4xl font-serif font-bold mb-2">Ausgabesprache wählen</h2>
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold mb-2">Ausgabesprache wählen</h2>
             <p className="text-slate-400 mb-8">Wähle die Sprache für Lion/Z1-Antworten</p>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
               {languages.map((lang) => (
                 <button
+                  type="button"
                   key={lang.id}
                   onClick={() => handleLanguageSelect(lang)}
-                  className={`p-4 rounded-xl border-2 transition-all duration-300 flex flex-col items-center gap-2 ${
+                  className={`min-h-24 p-4 rounded-xl border-2 transition-all duration-300 flex flex-col items-center justify-center gap-2 ${
                     selectedLanguage.id === lang.id
                       ? 'border-gold-400 bg-gold-400/10 text-gold-400'
                       : 'border-white/10 bg-white/5 text-slate-300 hover:border-white/20 hover:bg-white/10'
@@ -65,8 +66,9 @@ export default function SetupPanel({ languages, scenarios, onComplete }: SetupPa
             </div>
 
             <button
+              type="button"
               onClick={() => setStep('scenario')}
-              className="w-full px-6 py-3 rounded-full gold-gradient text-black font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-gold-500/50 transition-all"
+              className="w-full min-h-12 px-6 py-3 rounded-full gold-gradient text-black font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-gold-500/50 transition-all"
             >
               Weiter <ChevronRight className="w-4 h-4" />
             </button>
@@ -79,13 +81,14 @@ export default function SetupPanel({ languages, scenarios, onComplete }: SetupPa
             exit={{ opacity: 0, x: -20 }}
           >
             <button
+              type="button"
               onClick={() => setStep('language')}
               className="text-slate-400 hover:text-slate-300 text-sm mb-4 flex items-center gap-1"
             >
-              ← Back
+              ← Zurück
             </button>
 
-            <h2 className="text-4xl font-serif font-bold mb-2">Modul wählen</h2>
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold mb-2">Modul wählen</h2>
             <p className="text-slate-400 mb-8">
               Lion/Z1 antwortet auf {selectedLanguage.nativeName} - Wähle ein Arbeitsmodul
             </p>
@@ -93,9 +96,10 @@ export default function SetupPanel({ languages, scenarios, onComplete }: SetupPa
             <div className="space-y-3 mb-8">
               {scenarios.map((scenario) => (
                 <button
+                  type="button"
                   key={scenario.id}
                   onClick={() => handleScenarioSelect(scenario)}
-                  className={`w-full p-4 rounded-xl border-2 text-left transition-all duration-300 ${
+                  className={`w-full min-h-24 p-4 rounded-xl border-2 text-left transition-all duration-300 ${
                     selectedScenario.id === scenario.id
                       ? 'border-gold-400 bg-gold-400/10'
                       : 'border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/10'
@@ -113,8 +117,9 @@ export default function SetupPanel({ languages, scenarios, onComplete }: SetupPa
             </div>
 
             <button
+              type="button"
               onClick={() => handleScenarioSelect(selectedScenario)}
-              className="w-full px-6 py-3 rounded-full gold-gradient text-black font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-gold-500/50 transition-all"
+              className="w-full min-h-12 px-6 py-3 rounded-full gold-gradient text-black font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-gold-500/50 transition-all"
             >
               Modul starten <ChevronRight className="w-4 h-4" />
             </button>

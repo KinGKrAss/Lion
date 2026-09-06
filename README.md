@@ -1,25 +1,44 @@
-# 🦁 LingoLion - AI-Powered Language Learning Platform
+# 🦁 Lion/Z1
 
-**Royal KrAss Group** | Language Mastery through Immersive AI Conversations
+**Royal KrAss Group** | Mobile-geeignete Projektoberfläche für Lion/Z1 und ZOE AI
 
 ![License](https://img.shields.io/badge/license-Apache%202.0-blue)
 ![Version](https://img.shields.io/badge/version-1.0.0-green)
-![Status](https://img.shields.io/badge/status-Production%20Ready-brightgreen)
+![Status](https://img.shields.io/badge/status-Web--first%20Android%20Path-gold)
 
 ---
 
 ## 🌟 Overview
 
-**LingoLion** is a full-stack, AI-powered language learning platform that combines:
+**Lion/Z1** ist eine Weboberfläche für Projektorganisation, Modulstatus, Aufgaben und ZOE-AI-gestützte Analysen. Der aktuelle Stand dieses Repositories ist bewusst **web-first**:
 
-- 🤖 **Advanced AI Tutors** (Google Gemini API)
-- 🌍 **7 Languages** (Spanish, French, German, Italian, Japanese, Korean, Chinese)
-- 🎭 **4+ Immersive Scenarios** (Café, Hotel, Interview, Networking)
-- ⚡ **Real-time Conversations** with instant feedback and corrections
-- 🎨 **Premium UI** with smooth animations and responsive design
-- 🔐 **Full Authentication** system
-- 💾 **Chat History & Progress Tracking**
-- 📧 **Contact Management** system
+- 🧠 **Lion/Z1-Module** für CORE, GAIA, FORTUNA, ELECTRA, DIPLOMATIE und ZOE AI
+- 📱 **Responsive Mobile-Web-UX** für Android-Browser und Touch-Bedienung
+- 💬 **Serverseitige AI-Anbindung** über das Backend; keine Gemini-Secrets im Client
+- ✅ **Verifizierter Build- und TypeScript-Prüfpfad** mit `npm run lint` (`tsc --noEmit`) und `npm run build`
+- ⚠️ **Keine native Android-App im Repository** und derzeit **keine echte Offline-PWA**
+
+---
+
+## 📱 Android-Supportstatus
+
+- **Vorhanden:** Responsive React/Vite-Web-App mit Express-Backend
+- **Nicht vorhanden:** `android/`, React Native, Capacitor, Service Worker oder Web-App-Manifest
+- **Aktuell nutzbar auf Android:** im mobilen Browser, über „Zum Startbildschirm hinzufügen“ als Browser-Verknüpfung oder lokal via Termux
+- **Noch offen für native Android-Unterstützung:** Manifest/Icons + Service Worker ergänzen und anschließend einen Wrapper wie Trusted Web Activity oder Capacitor integrieren
+- **Sicherheitsgrenze:** `GEMINI_API_KEY` bleibt serverseitig; keine Secrets in `src/`
+
+## 🧪 Build- / Teststatus
+
+Die folgenden vorhandenen Befehle wurden für diesen Stand erfolgreich ausgeführt:
+
+```bash
+npm install
+npm run lint
+npm run build
+```
+
+Für die Backend-Prüfung kann zusätzlich `npm run server:dev` gestartet und anschließend `GET /api/health` geprüft werden.
 
 ---
 
@@ -73,7 +92,7 @@ Then open **http://localhost:3000** in your browser.
 
 ## 📱 Deployment Options
 
-### Option 1: **Android Device (Recommended for Learning)**
+### Option 1: **Android Device**
 
 For Android, you have **2 choices**:
 
@@ -93,30 +112,24 @@ For Android, you have **2 choices**:
    ```
 3. Access via browser: `http://localhost:3000`
 
-#### **B) Progressive Web App (PWA) - Works Offline**
+#### **B) Browser-Verknüpfung / Add to Home Screen**
 
-The app can be installed as a PWA:
-1. Open in Chrome: `https://lingolion.example.com` (when deployed)
-2. Tap menu → "Install app"
-3. Works offline with cached conversations
+Der aktuelle Stand kann auf Android zum Startbildschirm hinzugefügt werden:
+1. Bereitgestellte URL in Chrome öffnen
+2. Menü → „Zum Startbildschirm hinzufügen“
+3. Startet wie eine Web-App, benötigt aber weiterhin Netzwerkzugriff
 
 ### Option 2: **Cloud Deployment (Recommended for Production)**
 
-#### **Railway.app** (Easiest - Free tier available)
+#### **Railway.app** (ein möglicher Hosting-Pfad)
 
 ```bash
-# 1. Push to GitHub
-git push origin main
-
-# 2. Connect Railway to GitHub repo
-# 3. Railway auto-detects Node.js and builds automatically
-
-# 4. Set environment variables in Railway dashboard:
+# 1. Repository mit Railway verbinden
+# 2. Node.js-Build automatisch erkennen lassen
+# 3. Environment-Variablen im Railway-Dashboard setzen:
 # GEMINI_API_KEY=...
 # ADMIN_EMAIL=...
 ```
-
-**Live URL**: `https://lingolion-production.railway.app`
 
 #### **Vercel** (Frontend only)
 
@@ -161,12 +174,12 @@ Lion/
 ├── src/
 │   ├── components/
 │   │   ├── LandingPage.tsx      # Hero & features
-│   │   ├── SetupPanel.tsx       # Language/scenario selection
-│   │   └── ChatInterface.tsx    # AI conversation interface
+│   │   ├── SetupPanel.tsx       # Sprach- und Modulauswahl
+│   │   └── ChatInterface.tsx    # Lion/Z1-Dialogoberfläche
 │   ├── services/
 │   │   └── api.ts              # API client
 │   ├── types.ts                # TypeScript interfaces
-│   ├── constants.ts            # Languages & scenarios
+│   ├── constants.ts            # Sprachen & Module
 │   ├── App.tsx                 # Main component
 │   ├── main.tsx                # React entry point
 │   └── index.css               # Tailwind styles

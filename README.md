@@ -28,9 +28,7 @@ Dieses Repository enthält die aktuell vorhandene **Lion/Z1**-Oberfläche als Vi
 
 ---
 
-## Verifizierter Status
-
-Die folgenden Checks wurden im Repository erfolgreich ausgeführt:
+## Verifikation
 
 ```bash
 npm install
@@ -39,11 +37,7 @@ npm run build
 npm test
 ```
 
-Ergebnis zum aktuellen Stand:
-
-- `npm run lint` ✅
-- `npm run build` ✅
-- `npm test` ✅
+Diese Befehle sind die vorgesehenen Checks für lokale Verifikation von TypeScript, Build und der minimalen Modul-/Landing-Testsuite.
 
 ---
 
@@ -135,4 +129,3 @@ ADMIN_EMAIL=admin@kingkrass.com
 - `GEMINI_API_KEY` in `.env.local` setzen, wenn Chat-Antworten mit Gemini getestet werden sollen.
 - Optional SMTP-Zugangsdaten eintragen, wenn das Kontaktformular E-Mails versenden soll.
 - Eine echte **Luna**-Anbindung erst nach Festlegung von Datenfluss, Zuständigkeit und UI-Einstiegspunkt ergänzen.
-

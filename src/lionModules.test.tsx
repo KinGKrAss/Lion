@@ -34,5 +34,8 @@ test('landing page exposes consistent module and luna status copy', () => {
 
   const luna = PLATFORM_INTEGRATIONS.find(({ id }) => id === 'luna');
   assert.ok(luna);
+  if (!luna) {
+    return;
+  }
   assert.match(luna.note, /TODO:/);
 });

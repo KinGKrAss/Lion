@@ -135,7 +135,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
             >
               <div className="flex flex-wrap items-center gap-3 mb-2">
                 <h3 className="text-lg font-bold">{integration.title}</h3>
-                <span className="rounded-full border border-white/15 px-3 py-1 text-[11px] uppercase tracking-wider text-slate-300">
+                <span className="rounded-full border border-white/15 px-3 py-1 text-[11px] tracking-wider text-slate-300">
                   {integration.status}
                 </span>
               </div>

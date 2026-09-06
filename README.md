@@ -15,7 +15,7 @@
 - 🧠 **Lion/Z1-Module** für CORE, GAIA, FORTUNA, ELECTRA, DIPLOMATIE und ZOE AI
 - 📱 **Responsive Mobile-Web-UX** für Android-Browser und Touch-Bedienung
 - 💬 **Serverseitige AI-Anbindung** über das Backend; keine Gemini-Secrets im Client
-- ✅ **Verifizierter Build- und Typecheck-Pfad** mit `npm run lint` und `npm run build`
+- ✅ **Verifizierter Build- und TypeScript-Prüfpfad** mit `npm run lint` (`tsc --noEmit`) und `npm run build`
 - ⚠️ **Keine native Android-App im Repository** und derzeit **keine echte Offline-PWA**
 
 ---

@@ -23,6 +23,7 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [isOffline, setIsOffline] = useState(() => typeof navigator !== 'undefined' ? !navigator.onLine : false);
+  const [sessionRetryKey, setSessionRetryKey] = useState(0);
 
   const offlineMessage = 'Keine Netzwerkverbindung. Prüfe die Verbindung und versuche es erneut.';
 
@@ -69,6 +70,7 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
   useEffect(() => {
     const initSession = async () => {
       try {
+        setSessionId(null);
         const response = await fetch('/api/chat/session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -82,6 +84,7 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
         }
         const data = await response.json();
         setSessionId(data.id);
+        setError(null);
       } catch (err) {
         const errorMessage = isOffline
           ? offlineMessage
@@ -94,12 +97,16 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
     };
 
     initSession();
-  }, [isOffline, language, offlineMessage, scenario]);
+  }, [language, offlineMessage, scenario, sessionRetryKey]);
 
   const handleSend = async () => {
     if (!input.trim() || loading) return;
     if (isOffline) {
       setError(offlineMessage);
+      return;
+    }
+    if (!sessionId) {
+      setError('Sitzung ist noch nicht bereit. Bitte starte sie erneut.');
       return;
     }
 
@@ -181,6 +188,12 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
       setError('Kopieren fehlgeschlagen. Bitte erneut versuchen.');
       console.error('Copy error:', err);
     }
+  };
+
+  const retrySession = () => {
+    if (loading) return;
+    setError(null);
+    setSessionRetryKey((currentValue) => currentValue + 1);
   };
 
   return (
@@ -273,9 +286,19 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-300"
+              className="space-y-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-300"
             >
-              {error}
+              <p>{error}</p>
+              {!sessionId && (
+                <button
+                  type="button"
+                  onClick={retrySession}
+                  disabled={isOffline}
+                  className="min-h-10 rounded-full border border-red-300/30 px-4 py-2 text-sm font-semibold text-red-100 transition-colors hover:bg-red-400/10 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  Sitzung erneut starten
+                </button>
+              )}
             </motion.div>
           )}
 

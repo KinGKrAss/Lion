@@ -1,9 +1,9 @@
 {
-  "name": "lingolion",
+  "name": "lion-z1",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "LingoLion - AI-powered language learning platform by Royal KrAss Group",
+  "description": "Lion/Z1 workspace for structured project, finance, energy and document analysis",
   "author": "KinGKrAss",
   "license": "Apache-2.0",
   "scripts": {
@@ -18,6 +18,7 @@
     "start:dev": "tsx server.ts",
     "clean": "rm -rf dist node_modules",
     "lint": "tsc --noEmit",
+    "test": "node --import tsx --test src/lionModules.test.tsx",
     "type-check": "tsc --noEmit",
     "format": "prettier --write \"src/**/*.{ts,tsx,json,css}\""
   },

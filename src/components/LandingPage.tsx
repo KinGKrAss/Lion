@@ -6,12 +6,22 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Crown, Zap, Landmark, WalletCards, Wind, FileText, BrainCircuit } from 'lucide-react';
+import { LANDING_PAGE_COPY, MODULE_DEFINITIONS, PLATFORM_INTEGRATIONS } from '../constants';
 
 interface LandingPageProps {
   onStart: () => void;
 }
 
 export default function LandingPage({ onStart }: LandingPageProps) {
+  const moduleIcons: Record<string, React.ReactNode> = {
+    core: <Zap className="w-6 h-6" />,
+    gaia: <Landmark className="w-6 h-6" />,
+    fortuna: <WalletCards className="w-6 h-6" />,
+    electra: <Wind className="w-6 h-6" />,
+    diplomatie: <FileText className="w-6 h-6" />,
+    zoe: <BrainCircuit className="w-6 h-6" />,
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -35,9 +45,11 @@ export default function LandingPage({ onStart }: LandingPageProps) {
             Organize Every Project with
             <span className="gold-text-gradient block mt-2">Royal Precision</span>
           </h1>
-          <p className="text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">
-            Lion/Z1 ist das zentrale Betriebssystem für Projektorganisation, Analyse und Entscheidungen – mit Modulen für Core, Immobilien, Finanzen, Energie, Diplomatie und ZOE AI.
-          </p>
+          <p className="text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">{LANDING_PAGE_COPY.heroDescription}</p>
+          <div className="max-w-2xl rounded-2xl border border-gold-400/20 bg-gold-400/5 px-5 py-4 text-sm text-slate-200">
+            <p className="font-semibold text-gold-300 mb-1">{LANDING_PAGE_COPY.capabilityNoticeTitle}</p>
+            <p>{LANDING_PAGE_COPY.capabilityNoticeBody}</p>
+          </div>
         </motion.div>
 
         <motion.div
@@ -52,9 +64,12 @@ export default function LandingPage({ onStart }: LandingPageProps) {
           >
             Lion/Z1 starten →
           </button>
-          <button className="px-8 py-4 rounded-full border border-white/20 text-white font-bold text-lg hover:bg-white/5 transition-colors">
+          <a
+            href={LANDING_PAGE_COPY.moduleSectionHref}
+            className="px-8 py-4 rounded-full border border-white/20 text-white font-bold text-lg hover:bg-white/5 transition-colors"
+          >
             Module ansehen
-          </button>
+          </a>
         </motion.div>
 
         {/* Stats */}
@@ -80,7 +95,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-6 max-w-6xl mx-auto">
+      <section id={LANDING_PAGE_COPY.moduleSectionId} className="py-20 px-6 max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -90,49 +105,43 @@ export default function LandingPage({ onStart }: LandingPageProps) {
         </motion.h2>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              icon: <Zap className="w-6 h-6" />,
-              title: 'CORE',
-              desc: 'Benutzer, Rollen, Einstellungen, Sicherheit und Systemstatus.',
-            },
-            {
-              icon: <Landmark className="w-6 h-6" />,
-              title: 'GAIA',
-              desc: 'Immobilien, Grundstücke, Mietverträge, Projekte und Karten.',
-            },
-            {
-              icon: <WalletCards className="w-6 h-6" />,
-              title: 'FORTUNA',
-              desc: 'Einnahmen, Ausgaben, Cashflow, Vermögensübersicht und Berichte.',
-            },
-            {
-              icon: <Wind className="w-6 h-6" />,
-              title: 'ELECTRA',
-              desc: 'Windparks, Solaranlagen, Energieproduktion und CO₂-Auswertungen.',
-            },
-            {
-              icon: <FileText className="w-6 h-6" />,
-              title: 'DIPLOMATIE',
-              desc: 'Dokumente, Verträge, Kontakte und Termine.',
-            },
-            {
-              icon: <BrainCircuit className="w-6 h-6" />,
-              title: 'ZOE AI',
-              desc: 'Analysen, Zusammenfassungen, Automatisierungen und strategische Vorschläge.',
-            },
-          ].map((feature, idx) => (
+          {MODULE_DEFINITIONS.map((module, idx) => (
             <motion.div
-              key={idx}
+              key={module.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
               className="p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-colors"
             >
-              <div className="text-gold-400 mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-              <p className="text-slate-300">{feature.desc}</p>
+              <div className="text-gold-400 mb-4">{moduleIcons[module.id] ?? <Crown className="w-6 h-6" />}</div>
+              <div className="flex items-center justify-between gap-3 mb-2">
+                <h3 className="text-xl font-bold">{module.title}</h3>
+                <span className="rounded-full border border-gold-400/30 bg-gold-400/10 px-3 py-1 text-[11px] font-semibold text-gold-300">
+                  {module.status}
+                </span>
+              </div>
+              <p className="text-slate-300 mb-3">{module.description}</p>
+              <p className="text-sm text-slate-200 mb-2">{module.capabilitySummary}</p>
+              <p className="text-xs text-slate-400">{module.guardrail}</p>
             </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-10 grid gap-4">
+          {PLATFORM_INTEGRATIONS.map((integration) => (
+            <div
+              key={integration.id}
+              className="rounded-xl border border-dashed border-white/15 bg-white/[0.03] px-5 py-4"
+            >
+              <div className="flex flex-wrap items-center gap-3 mb-2">
+                <h3 className="text-lg font-bold">{integration.title}</h3>
+                <span className="rounded-full border border-white/15 px-3 py-1 text-[11px] uppercase tracking-wider text-slate-300">
+                  {integration.status}
+                </span>
+              </div>
+              <p className="text-sm text-slate-300">{integration.summary}</p>
+              <p className="text-xs text-slate-400 mt-2">{integration.note}</p>
+            </div>
           ))}
         </div>
       </section>

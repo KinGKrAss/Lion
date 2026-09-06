@@ -66,7 +66,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
           </button>
           <a
             href={LANDING_PAGE_COPY.moduleSectionHref}
-            className="w-full sm:w-auto min-h-12 px-8 py-4 rounded-full border border-white/20 text-white font-bold text-lg hover:bg-white/5 transition-colors"
+            className="inline-flex w-full sm:w-auto min-h-12 items-center justify-center px-8 py-4 rounded-full border border-white/20 text-white font-bold text-lg hover:bg-white/5 transition-colors"
           >
             Module ansehen
           </a>

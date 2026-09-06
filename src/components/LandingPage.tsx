@@ -116,7 +116,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
               <div className="text-gold-400 mb-4">{moduleIcons[module.id] ?? <Crown className="w-6 h-6" />}</div>
               <div className="flex items-center justify-between gap-3 mb-2">
                 <h3 className="text-xl font-bold">{module.title}</h3>
-                <span className="rounded-full border border-gold-400/30 bg-gold-400/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-gold-300">
+                <span className="rounded-full border border-gold-400/30 bg-gold-400/10 px-3 py-1 text-[11px] font-semibold text-gold-300">
                   {module.status}
                 </span>
               </div>

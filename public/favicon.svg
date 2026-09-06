@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Lion/Z1">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0b649" />
+      <stop offset="100%" stop-color="#d67d24" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#050505" />
+  <path
+    d="M32 10l5.5 11 12.5 1.8-9 8.8 2.1 12.4L32 38.6 20.9 44l2.1-12.4-9-8.8L26.5 21 32 10z"
+    fill="url(#g)"
+  />
+  <text
+    x="32"
+    y="57"
+    text-anchor="middle"
+    font-family="system-ui, sans-serif"
+    font-size="12"
+    font-weight="700"
+    fill="#f8fafc"
+  >
+    Z1
+  </text>
+</svg>

@@ -20,22 +20,22 @@ export default function LandingPage({ onStart }: LandingPageProps) {
       className="flex-1 overflow-auto"
     >
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center px-6 py-20 max-w-4xl mx-auto">
+      <section className="min-h-screen flex flex-col justify-center px-4 sm:px-6 py-16 sm:py-20 max-w-4xl mx-auto">
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.1 }}
           className="mb-8"
         >
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex flex-wrap items-center gap-3 mb-6">
             <Crown className="w-8 h-8 text-gold-400" />
             <span className="text-sm uppercase tracking-widest font-semibold text-gold-400">Lion Core</span>
           </div>
-          <h1 className="text-6xl md:text-7xl font-serif font-bold leading-tight mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-serif font-bold leading-tight mb-6">
             Organize Every Project with
             <span className="gold-text-gradient block mt-2">Royal Precision</span>
           </h1>
-          <p className="text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">
+          <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">
             Lion/Z1 ist das zentrale Betriebssystem für Projektorganisation, Analyse und Entscheidungen – mit Modulen für Core, Immobilien, Finanzen, Energie, Diplomatie und ZOE AI.
           </p>
         </motion.div>
@@ -44,15 +44,19 @@ export default function LandingPage({ onStart }: LandingPageProps) {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="flex flex-wrap gap-4 mb-16"
+          className="flex flex-col sm:flex-row gap-4 mb-16"
         >
           <button
             onClick={onStart}
-            className="px-8 py-4 rounded-full gold-gradient text-black font-bold text-lg hover:shadow-lg hover:shadow-gold-500/50 transition-all duration-300 transform hover:scale-105"
+            className="w-full sm:w-auto min-h-12 px-8 py-4 rounded-full gold-gradient text-black font-bold text-lg hover:shadow-lg hover:shadow-gold-500/50 transition-all duration-300 transform hover:scale-105"
           >
             Lion/Z1 starten →
           </button>
-          <button className="px-8 py-4 rounded-full border border-white/20 text-white font-bold text-lg hover:bg-white/5 transition-colors">
+          <button
+            type="button"
+            onClick={onStart}
+            className="w-full sm:w-auto min-h-12 px-8 py-4 rounded-full border border-white/20 text-white font-bold text-lg hover:bg-white/5 transition-colors"
+          >
             Module ansehen
           </button>
         </motion.div>
@@ -62,7 +66,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="grid grid-cols-3 gap-4 mb-20"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-20"
         >
           <div className="p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm">
             <p className="text-2xl font-bold text-gold-400">6</p>
@@ -80,16 +84,16 @@ export default function LandingPage({ onStart }: LandingPageProps) {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-6 max-w-6xl mx-auto">
+      <section className="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="text-4xl font-serif font-bold mb-12 text-center"
+          className="text-3xl sm:text-4xl font-serif font-bold mb-12 text-center"
         >
           Lion/Z1 Module
         </motion.h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {[
             {
               icon: <Zap className="w-6 h-6" />,
@@ -138,13 +142,13 @@ export default function LandingPage({ onStart }: LandingPageProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 text-center">
+      <section className="py-20 px-4 sm:px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="max-w-2xl mx-auto"
         >
-          <h2 className="text-4xl font-serif font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold mb-6">
             Bereit für Lion/Z1?
           </h2>
           <p className="text-lg text-slate-300 mb-8">
@@ -152,7 +156,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
           </p>
           <button
             onClick={onStart}
-            className="px-8 py-4 rounded-full gold-gradient text-black font-bold text-lg hover:shadow-lg hover:shadow-gold-500/50 transition-all duration-300 transform hover:scale-105"
+            className="w-full sm:w-auto min-h-12 px-8 py-4 rounded-full gold-gradient text-black font-bold text-lg hover:shadow-lg hover:shadow-gold-500/50 transition-all duration-300 transform hover:scale-105"
           >
             System öffnen →
           </button>

@@ -40,6 +40,20 @@ export default function App() {
     setMessages([]);
   };
 
+  const openMode = (nextMode: AppMode) => {
+    if (nextMode === 'landing') {
+      resetApp();
+      return;
+    }
+
+    if (nextMode === 'chat' && messages.length === 0) {
+      setMode('setup');
+      return;
+    }
+
+    setMode(nextMode);
+  };
+
   const navItems: Array<{ mode: AppMode; label: string; icon: React.ReactNode }> = [
     { mode: 'landing', label: 'Lion/Z1', icon: <Crown className="w-5 h-5" /> },
     { mode: 'chat', label: 'Module', icon: <LanguagesIcon className="w-5 h-5" /> },
@@ -55,9 +69,9 @@ export default function App() {
       </div>
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-royal-black/50 backdrop-blur-md border-b border-white/5">
+      <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-[calc(1rem+env(safe-area-inset-top))] pb-3 sm:py-4 bg-royal-black/50 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={resetApp}>
+          <button type="button" className="flex items-center gap-2 cursor-pointer text-left" onClick={resetApp}>
             <div className="w-10 h-10 rounded-xl gold-gradient flex items-center justify-center shadow-lg shadow-gold-500/20">
               <Crown className="text-white w-6 h-6" />
             </div>
@@ -67,14 +81,14 @@ export default function App() {
               </h1>
               <p className="text-[10px] uppercase tracking-[0.2em] font-medium opacity-50">Lion Core Operating System</p>
             </div>
-          </div>
+          </button>
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center gap-1 bg-white/5 rounded-full p-1">
             {navItems.map(item => (
               <button
                 key={item.mode}
-                onClick={() => item.mode === 'landing' ? resetApp() : setMode(item.mode)}
+                onClick={() => openMode(item.mode)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm transition-all ${
                   mode === item.mode
                     ? 'gold-gradient text-black shadow-lg shadow-gold-500/30'
@@ -90,9 +104,10 @@ export default function App() {
           {/* Mobile Menu */}
           <div className="md:hidden flex items-center gap-2">
             {mode === 'chat' && (
-              <button 
+              <button
+                type="button"
                 onClick={() => setMode('setup')}
-                className="px-3 py-2 rounded-full border border-white/10 text-xs font-medium hover:bg-white/5 transition-colors"
+                className="min-h-11 px-3 py-2 rounded-full border border-white/10 text-xs font-medium hover:bg-white/5 transition-colors"
               >
                 Ändern
               </button>
@@ -106,13 +121,14 @@ export default function App() {
       </header>
 
       {/* Mobile Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 md:hidden z-50 px-2 py-3 bg-royal-black/80 backdrop-blur-md border-t border-white/5">
+      <div className="fixed bottom-0 left-0 right-0 md:hidden z-50 px-2 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] bg-royal-black/80 backdrop-blur-md border-t border-white/5">
         <div className="flex justify-around">
           {navItems.map(item => (
             <button
+              type="button"
               key={item.mode}
-              onClick={() => item.mode === 'landing' ? resetApp() : setMode(item.mode)}
-              className={`flex flex-col items-center gap-1 py-2 px-3 rounded-lg transition-colors ${
+              onClick={() => openMode(item.mode)}
+              className={`flex min-w-0 flex-1 flex-col items-center gap-1 py-2 px-3 rounded-lg transition-colors ${
                 mode === item.mode
                   ? 'text-gold-400'
                   : 'text-slate-400'
@@ -126,7 +142,7 @@ export default function App() {
       </div>
 
       {/* Main Content */}
-      <main className="relative z-10 pt-20 pb-24 md:pb-20 min-h-screen flex flex-col">
+      <main className="relative z-10 pt-24 sm:pt-20 pb-[calc(6.5rem+env(safe-area-inset-bottom))] md:pb-20 min-h-screen flex flex-col">
         <AnimatePresence mode="wait">
           {mode === 'landing' && (
             <LandingPage key="landing" onStart={startSetup} />
@@ -154,7 +170,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="fixed bottom-24 md:bottom-4 left-0 right-0 text-center pointer-events-none z-40">
+      <footer className="hidden md:block fixed bottom-4 left-0 right-0 text-center pointer-events-none z-40">
         <p className="text-[9px] uppercase tracking-[0.3em] font-medium opacity-30">
           © 2026 Royal KrAss Group • Digital Sovereignty
         </p>

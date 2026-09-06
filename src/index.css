@@ -20,6 +20,7 @@
 
 :root {
   --gold-gradient: linear-gradient(135deg, #f0b649, #d67d24);
+  color-scheme: dark;
 }
 
 @layer components {
@@ -40,9 +41,30 @@ body {
   @apply bg-royal-black text-slate-100 font-sans;
 }
 
+body,
+#root {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  overscroll-behavior-y: none;
+}
+
+button,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Custom scrollbar */

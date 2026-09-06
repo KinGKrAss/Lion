@@ -35,6 +35,16 @@ export const LANGUAGES: Language[] = [
   { id: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸', voiceCode: 'en-US' },
 ];
 
+export const LANDING_PAGE_COPY = {
+  heroDescription:
+    'Lion/Z1 ist das zentrale Betriebssystem für Projektorganisation, Analyse und Entscheidungen – mit Modulen für Core, Immobilien, Finanzen, Energie, Diplomatie und ZOE AI.',
+  capabilityNoticeTitle: 'Aktueller Funktionsrahmen',
+  capabilityNoticeBody:
+    'Diese Oberfläche unterstützt strukturierte Analysen und Arbeitsvorbereitung. Sie verspricht keine autonomen Aktionen, keine finanziellen Freigaben und keine Ergebnisse ohne deine Eingaben.',
+  moduleSectionId: 'module-overview',
+  moduleSectionHref: '#module-overview',
+} as const;
+
 export const MODULE_DEFINITIONS: ModuleDefinition[] = [
   {
     id: 'core',

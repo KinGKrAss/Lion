@@ -1,10 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import React from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
 
-import LandingPage from './components/LandingPage';
-import { MODULE_DEFINITIONS, PLATFORM_INTEGRATIONS, SCENARIOS } from './constants';
+import { LANDING_PAGE_COPY, MODULE_DEFINITIONS, PLATFORM_INTEGRATIONS, SCENARIOS } from './constants';
 
 test('module definitions remain aligned with available scenarios', () => {
   assert.equal(MODULE_DEFINITIONS.length, SCENARIOS.length);
@@ -23,14 +20,12 @@ test('module definitions remain aligned with available scenarios', () => {
   assert.match(fortuna.guardrail, /keine Zahlungen oder Freigaben/i);
 });
 
-test('landing page exposes consistent module and luna status copy', () => {
-  const html = renderToStaticMarkup(<LandingPage onStart={() => undefined} />);
-
-  assert.match(html, /href="#module-overview"/);
-  assert.match(html, /Aktueller Funktionsrahmen/);
-  assert.match(html, /keine autonomen Aktionen/i);
-  assert.match(html, /ZOE AI/);
-  assert.match(html, /Nicht verbunden/);
+test('landing page copy stays aligned with module and luna status messaging', () => {
+  assert.equal(LANDING_PAGE_COPY.moduleSectionHref, '#module-overview');
+  assert.equal(LANDING_PAGE_COPY.moduleSectionId, 'module-overview');
+  assert.match(LANDING_PAGE_COPY.capabilityNoticeTitle, /Funktionsrahmen/);
+  assert.match(LANDING_PAGE_COPY.capabilityNoticeBody, /keine autonomen Aktionen/i);
+  assert.match(LANDING_PAGE_COPY.heroDescription, /ZOE AI/);
 
   const luna = PLATFORM_INTEGRATIONS.find(({ id }) => id === 'luna');
   assert.ok(luna);

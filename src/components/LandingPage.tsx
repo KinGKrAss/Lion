@@ -6,7 +6,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Crown, Zap, Landmark, WalletCards, Wind, FileText, BrainCircuit } from 'lucide-react';
-import { MODULE_DEFINITIONS, PLATFORM_INTEGRATIONS } from '../constants';
+import { LANDING_PAGE_COPY, MODULE_DEFINITIONS, PLATFORM_INTEGRATIONS } from '../constants';
 
 interface LandingPageProps {
   onStart: () => void;
@@ -45,15 +45,10 @@ export default function LandingPage({ onStart }: LandingPageProps) {
             Organize Every Project with
             <span className="gold-text-gradient block mt-2">Royal Precision</span>
           </h1>
-          <p className="text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">
-            Lion/Z1 ist das zentrale Betriebssystem für Projektorganisation, Analyse und Entscheidungen – mit Modulen für Core, Immobilien, Finanzen, Energie, Diplomatie und ZOE AI.
-          </p>
+          <p className="text-xl text-slate-300 leading-relaxed max-w-2xl mb-8">{LANDING_PAGE_COPY.heroDescription}</p>
           <div className="max-w-2xl rounded-2xl border border-gold-400/20 bg-gold-400/5 px-5 py-4 text-sm text-slate-200">
-            <p className="font-semibold text-gold-300 mb-1">Aktueller Funktionsrahmen</p>
-            <p>
-              Diese Oberfläche unterstützt strukturierte Analysen und Arbeitsvorbereitung. Sie verspricht keine autonomen Aktionen,
-              keine finanziellen Freigaben und keine Ergebnisse ohne deine Eingaben.
-            </p>
+            <p className="font-semibold text-gold-300 mb-1">{LANDING_PAGE_COPY.capabilityNoticeTitle}</p>
+            <p>{LANDING_PAGE_COPY.capabilityNoticeBody}</p>
           </div>
         </motion.div>
 
@@ -70,7 +65,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
             Lion/Z1 starten →
           </button>
           <a
-            href="#module-overview"
+            href={LANDING_PAGE_COPY.moduleSectionHref}
             className="px-8 py-4 rounded-full border border-white/20 text-white font-bold text-lg hover:bg-white/5 transition-colors"
           >
             Module ansehen
@@ -100,7 +95,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
       </section>
 
       {/* Features Section */}
-      <section id="module-overview" className="py-20 px-6 max-w-6xl mx-auto">
+      <section id={LANDING_PAGE_COPY.moduleSectionId} className="py-20 px-6 max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

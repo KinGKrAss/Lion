@@ -83,7 +83,12 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
         const data = await response.json();
         setSessionId(data.id);
       } catch (err) {
-        setError(isOffline ? offlineMessage : 'Sitzung konnte nicht gestartet werden. Chat ist erst nach erfolgreicher Verbindung verfügbar.');
+        const errorMessage = isOffline
+          ? offlineMessage
+          : err instanceof Error && err.message
+            ? err.message
+            : 'Sitzung konnte nicht gestartet werden. Chat ist erst nach erfolgreicher Verbindung verfügbar.';
+        setError(errorMessage);
         console.error('Failed to create session:', err);
       }
     };
@@ -286,7 +291,12 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  handleSend();
+                }
+              }}
               placeholder={`Nachricht an Lion/Z1 auf ${language.nativeName}...`}
               className="flex-1 min-h-12 text-base px-4 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-slate-400 outline-none focus:border-gold-400 focus:bg-white/15 transition-colors"
               disabled={loading || isOffline}

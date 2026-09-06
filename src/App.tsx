@@ -20,6 +20,7 @@ export default function App() {
   const [selectedLanguage, setSelectedLanguage] = useState<Language>(LANGUAGES[0]);
   const [selectedScenario, setSelectedScenario] = useState<Scenario>(SCENARIOS[0]);
   const [messages, setMessages] = useState<Message[]>([]);
+  const [hasCompletedSetup, setHasCompletedSetup] = useState(false);
 
   const startSetup = () => setMode('setup');
   
@@ -32,12 +33,14 @@ export default function App() {
       content: scene.initialMessage,
       timestamp: Date.now()
     }]);
+    setHasCompletedSetup(true);
     setMode('chat');
   };
 
   const resetApp = () => {
     setMode('landing');
     setMessages([]);
+    setHasCompletedSetup(false);
   };
 
   const openMode = (nextMode: AppMode) => {
@@ -46,7 +49,7 @@ export default function App() {
       return;
     }
 
-    if (nextMode === 'chat' && messages.length === 0) {
+    if (nextMode === 'chat' && !hasCompletedSetup) {
       setMode('setup');
       return;
     }

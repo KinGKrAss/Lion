@@ -48,6 +48,10 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
   }, [messages]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
     const handleOnline = () => {
       setIsOffline(false);
       setError((currentError) => currentError === offlineMessage ? null : currentError);
@@ -175,7 +179,7 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
   };
 
   const handleCopy = async (text: string, id: string) => {
-    if (!navigator.clipboard?.writeText) {
+    if (typeof navigator === 'undefined' || !navigator.clipboard?.writeText) {
       setError('Kopieren wird auf diesem Gerät nicht unterstützt.');
       return;
     }
@@ -192,6 +196,7 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
 
   const retrySession = () => {
     if (loading) return;
+    setSessionId(null);
     setError(null);
     setSessionRetryKey((currentValue) => currentValue + 1);
   };

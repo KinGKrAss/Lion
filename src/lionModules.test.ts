@@ -26,10 +26,6 @@ test('landing copy and luna integration text are consistent', () => {
 
   const luna = PLATFORM_INTEGRATIONS.find(({ id }) => id === 'luna');
   assert.ok(luna);
-  if (!luna) {
-    return;
-  }
-
   assert.equal(luna.status, 'Nicht verbunden');
   assert.match(luna.note, /TODO:/);
 });

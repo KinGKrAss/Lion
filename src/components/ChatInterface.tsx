@@ -152,7 +152,7 @@ export default function ChatInterface({ language, scenario, initialMessages }: C
 
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (err) {
-      const errorMsg = !navigator.onLine
+      const errorMsg = isOffline
         ? offlineMessage
         : err instanceof Error && err.message
           ? err.message

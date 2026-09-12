@@ -19,6 +19,7 @@
     "clean": "rm -rf dist node_modules",
     "lint": "tsc --noEmit",
     "type-check": "tsc --noEmit",
+    "test": "tsx --test src/lionModules.test.ts",
     "format": "prettier --write \"src/**/*.{ts,tsx,json,css}\""
   },
   "dependencies": {
